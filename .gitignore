@@ -1,0 +1,11 @@
+# debug
+.vscode/
+
+# object files
+obj/
+objs/
+*.o
+*.d
+
+# executables
+cpp04*
