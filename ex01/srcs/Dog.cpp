@@ -4,21 +4,28 @@ Dog::Dog() {
 	std::cout << GREEN << "Dog constructor called." << RESET << std::endl;
 	this->type = "Dog";
 	this->brain = new Brain();
+	std::cout << "Dog's brain address: " << this->brain << std::endl;
 }
 
 Dog::Dog(const Dog& src) {
 	std::cout << GREEN << "Dog copy constructor called." << RESET << std::endl;
+	this->brain = new Brain(*src.brain);
 	*this = src;
 }
 
 Dog::~Dog() {
 	std::cout << RED << "Dog destructor called." << RESET << std::endl;
+	delete this->brain;
 }
 
 Dog& Dog::operator=(const Dog& src) {
 	std::cout << GREEN << "Dog assignation operator called." << RESET << std::endl;
 	if (this != &src)
+	{
 		this->type = src.type;
+		delete this->brain;
+		this->brain = new Brain(*src.brain);
+	}
 	return *this;
 }
 

@@ -4,9 +4,12 @@ OBJS = $(patsubst srcs/%.cpp, objs/%.o, $(SRCS))
 RM = rm -f
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -MP -MMD
-CXXFLAGS += -g3 -fsanitize=address
 INC = -I./includes/
 HEADERS = $(wildcard includes/*.hpp)
+
+ifeq ($(MAKECMDGOALS), debug)
+	CXXFLAGS += -DDEBUG
+endif
 
 all : $(NAME)
 
@@ -26,7 +29,9 @@ fclean : clean
 
 re : fclean all
 
+debug : re
+
 format :
 	clang-format -i $(SRCS) $(HEADERS)
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re debug format

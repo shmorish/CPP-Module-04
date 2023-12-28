@@ -4,7 +4,6 @@
 #include "../includes/WrongAnimal.hpp"
 #include "../includes/WrongCat.hpp"
 
-
 // appropriate destructors must be called in expected order
 void runAnimalArrayTest() {
 	const size_t animalCount = 4;
